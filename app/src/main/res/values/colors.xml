@@ -6,4 +6,6 @@
 
   <color name="gray_color">#666666</color>
   <color name="red_color">#cc0000</color>
+  <color name="color_green">#31B057</color>
+  <color name="color_grey">#929292</color>
 </resources>

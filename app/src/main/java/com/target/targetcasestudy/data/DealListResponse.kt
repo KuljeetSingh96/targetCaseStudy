@@ -7,7 +7,7 @@ data class DealListResponse (  @SerializedName("products")
                                @Expose
                                var products: List<ProductsList>){
 
-    data class ProductsList(private var id :Int=0,
+    data class ProductsList( var id :Int=0,
                             @SerializedName("title")
                             @Expose
                             var title: String="",
