@@ -1,0 +1,83 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  def versionMajor = 1
+  def versionMinor = 0
+  def versionPatch = 1
+  defaultConfig {
+    applicationId "com.target.targetcasestudy"
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode 1
+    versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
+  dataBinding {
+    enabled = true
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+  //google
+  implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+  implementation "androidx.core:core-ktx:$rootProject.ktxCompatVersion"
+  implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+  implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
+  implementation "androidx.cardview:cardview:1.0.0"
+  //ProcessLifecycleOwner
+  implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  //rx
+  implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
+  implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
+  implementation "com.jakewharton.rxbinding:rxbinding:$rootProject.rxBindingVersion"
+  //networking
+  implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+  implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+  implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+  implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.loggerVersion"
+  // Dagger
+  implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+  kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+  //image
+  implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
+
+  //swipe to refresh
+  implementation "androidx.swiperefreshlayout:swiperefreshlayout:$rootProject.swipeToRefreshVersion"
+  //instrument libraries
+  androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
+  androidTestImplementation "com.android.support.test:rules:$rootProject.runnerVersion"
+  androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+  androidTestImplementation("androidx.test.espresso:espresso-intents:$rootProject.espressoVersion")
+  androidTestImplementation("androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion") {
+    // Necessary to avoid version conflicts
+    exclude group: 'com.android.support', module: 'appcompat'
+    exclude group: 'com.android.support', module: 'support-v4'
+    exclude group: 'com.android.support', module: 'support-annotations'
+    exclude module: 'recyclerview-v7'
+  }
+  androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+  //unit test libraries
+  testImplementation 'org.mockito:mockito-core:2.19.0'
+  testImplementation 'junit:junit:4.13'
+  testImplementation "android.arch.core:core-testing:1.1.1"
+}
