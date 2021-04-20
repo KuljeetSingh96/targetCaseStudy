@@ -1,32 +1,56 @@
 package com.target.targetcasestudy.ui.deallist
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.target.targetcasestudy.R
-import com.target.targetcasestudy.data.StaticData
+import com.target.targetcasestudy.databinding.DealItemBinding
 
-class DealItemAdapter : RecyclerView.Adapter<DealItemViewHolder>() {
+class DealItemAdapter : RecyclerView.Adapter<DealItemAdapter.ViewHolder>() {
+  private val dealListViewModels = ArrayList<DealListItemModel>()
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealItemViewHolder {
-    val inflater = LayoutInflater.from(parent.context)
-    val view = inflater.inflate(R.layout.deal_list_item, parent, false)
-    return DealItemViewHolder(view)
+  fun updateDealListViewModels(dealListViewModels: List<DealListItemModel>) {
+    this.dealListViewModels.clear()
+    this.dealListViewModels.addAll(dealListViewModels)
+    notifyDataSetChanged()
+  }
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    return ViewHolder.createViewHolder(parent)
   }
 
   override fun getItemCount(): Int {
-    return StaticData.deals.size
+    return dealListViewModels.size
   }
 
-  override fun onBindViewHolder(viewHolder: DealItemViewHolder, position: Int) {
-    val item = StaticData.deals[position]
-    viewHolder.itemView.findViewById<TextView>(R.id.deal_list_item_title).text = item.title
-    viewHolder.itemView.findViewById<TextView>(R.id.deal_list_item_price).text = item.price
+  override fun getItemId(position: Int): Long {
+    return dealListViewModels[position].id.toLong()
   }
-}
 
-class DealItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+  override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    val repoListViewModel = dealListViewModels[position]
+    holder.bind(repoListViewModel)
+  }
 
+
+  class ViewHolder(
+    private val binding: DealItemBinding
+  )// Set in constructor since these do not change
+    : RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(dealListItemModel: DealListItemModel) {
+      binding.viewModel = dealListItemModel
+      binding.rootLayout.setOnClickListener {
+      }
+    }
+
+    companion object {
+
+      fun createViewHolder(
+        parent: ViewGroup
+      ): ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = DealItemBinding.inflate(inflater, parent, false)
+        return ViewHolder(binding)
+      }
+    }
+  }
 }
