@@ -5,9 +5,10 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.target.targetcasestudy.ui.deallist.DealListFragment
+import com.target.targetcasestudy.ui.dealsdetail.DealDetailFragment
 import com.target.targetcasestudy.ui.payment.PaymentDialogFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DealDetailFragment.DealDetailFragmentInteractionListener {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -24,7 +25,14 @@ class MainActivity : AppCompatActivity() {
     menuInflater.inflate(R.menu.menu_main, menu)
     return true
   }
-
+  override fun onBackPressed() {
+    val count = supportFragmentManager.backStackEntryCount
+    if (count == 0) {
+      super.onBackPressed()
+    } else {
+      supportFragmentManager.popBackStack()
+    }
+  }
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return when (item.itemId) {
       R.id.credit_card -> {
@@ -34,4 +42,9 @@ class MainActivity : AppCompatActivity() {
       else -> false
     }
   }
+
+  override fun finishFragment() {
+    onBackPressed()
+  }
+
 }

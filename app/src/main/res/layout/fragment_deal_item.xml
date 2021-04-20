@@ -1,13 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  tools:context=".ui.DealItemFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-  <TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="@string/hello_blank_fragment" />
+    <data class="DealDetailItemBinding">
+        <variable
+            name="eventHandler"
+            type="com.target.targetcasestudy.ui.dealsdetail.DealDetailFragment" />
 
-</FrameLayout>
+        <variable
+            name="viewModel"
+            type="com.target.targetcasestudy.ui.dealsdetail.DealDetailViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/white_color"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@id/bottom_container"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/product_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_launcher_foreground"
+                    app:layout_constraintBottom_toTopOf="@id/content_container"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:productAvatarUrl="@{viewModel.dealListItemModel.imageUrl}" />
+
+                <LinearLayout
+                    android:id="@+id/content_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_24"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="MissingConstraints">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/item_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="@{viewModel.dealListItemModel.salePriceDisplayString}"
+                            android:textColor="@color/red_color"
+                            android:textSize="@dimen/sp_18"
+                            android:textStyle="bold"
+                            tools:text="$ 80" />
+
+                        <TextView
+                            android:id="@+id/item_reg_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            app:regularPriceText="@{viewModel.dealListItemModel.regularPriceDisplayString}"
+                            android:textColor="@color/color_txt"
+                            android:textSize="@dimen/sp_16"
+                            tools:text="Reg:$17.99" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/item_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.dealListItemModel.title}"
+                        android:textColor="@color/color_txt"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp_18" />
+
+                    <TextView
+                        android:id="@+id/item_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.dealListItemModel.description}"
+                        android:textColor="@color/color_txt"
+                        android:textSize="@dimen/sp_16" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/bottom_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/darker_gray"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/add_to_list"
+                android:onClick="@{(view) -> eventHandler.onBackClicked()}"
+                android:textColor="@color/gray_color"
+                android:textSize="@dimen/sp_15" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/add_to_cart"
+                android:onClick="@{(view) -> eventHandler.onBackClicked()}"
+                android:textColor="@color/white_color"
+                android:textSize="@dimen/sp_15" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
