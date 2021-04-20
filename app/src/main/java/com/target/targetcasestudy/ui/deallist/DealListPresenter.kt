@@ -6,10 +6,10 @@ import com.target.targetcasestudy.data.DealListResponse
 import com.target.targetcasestudy.network.repository.Repository
 import com.target.targetcasestudy.network.schedulers.SchedulerProvider
 import io.reactivex.disposables.Disposable
-import java.util.ArrayList
+import java.util.*
 
 class DealListPresenter(
-    private val dealListViewModel: DealListViewModel,
+    val dealListViewModel: DealListViewModel,
     private val repository: Repository,
     private val schedulerProvider: SchedulerProvider
 ) {
@@ -37,12 +37,12 @@ class DealListPresenter(
             dealItemModel.aisle = products.aisle
             dealItemModel.imageUrl = products.imageUrl
             dealItemModel.salePriceDisplayString =
-                when (products.salePrice == null && products.salePrice?.displayString.isNullOrEmpty()) {
+                when (products.salePrice == null || products.salePrice?.displayString.isNullOrEmpty()) {
                     true -> "$ 0.00"
                     false -> products.salePrice?.displayString.toString()
                 }
             dealItemModel.regularPriceDisplayString =
-                when (products.regularPrice == null && products.regularPrice?.displayString.isNullOrEmpty()) {
+                when (products.regularPrice == null || products.regularPrice?.displayString.isNullOrEmpty()) {
                     true -> "$ 0.00"
                     false -> products.regularPrice?.displayString.toString()
                 }

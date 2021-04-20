@@ -3,112 +3,118 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data class="DealListItemBinding">
+    <data class="DealItemBinding">
 
         <variable
             name="viewModel"
             type="com.target.targetcasestudy.ui.deallist.DealListItemModel" />
 
     </data>
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/root_layout"
-      android:orientation="vertical">
+
     <LinearLayout
+        android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_gravity="center_vertical"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/deal_list_item_image_view"
-                android:layout_width="@dimen/deal_list_item_image_size"
-                android:layout_height="@dimen/deal_list_item_image_size"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_foreground"
-                app:repoAvatarUrl="@{viewModel.imageUrl}"
-                app:tint="@color/gray_color" />
-
-        </LinearLayout>
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="16dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/deal_list_item_title"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_8"
-                android:layout_marginBottom="@dimen/dp_8"
-                android:text="@{viewModel.title}"
-                android:lines="2"
-                android:ellipsize="end"
-                tools:text="minim aelit essefghfghfghfghfhfhgffhgfhgfgfhgfhfhgfhgfh ghfhgfgfgfhgfh"
-                android:textSize="18sp" />
+                android:layout_gravity="center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray_color" />
+                <ImageView
+                    android:id="@+id/deal_list_item_image_view"
+                    android:layout_width="@dimen/deal_list_item_image_size"
+                    android:layout_height="@dimen/deal_list_item_image_size"
+                    android:src="@drawable/ic_launcher_foreground"
+                    app:repoAvatarUrl="@{viewModel.imageUrl}" />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_8"
-                android:layout_marginBottom="@dimen/dp_8"
-                android:orientation="horizontal"
-                >
-            <TextView
-                android:id="@+id/deal_list_item_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                tools:text="$40"
-                android:text="@{viewModel.salePriceDisplayString}"
-                android:textSize="18sp" />
-              <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_weight=".8"
-                  android:gravity="end"
-                  android:layout_gravity="center_vertical"
-                  android:orientation="horizontal"
-                  >
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical">
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/deal_list_item_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ship or"
-                    android:textSize="18sp" />
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="@dimen/dp_8"
+                    android:ellipsize="end"
+                    android:lines="2"
+                    android:text="@{viewModel.title}"
+                    android:textSize="18sp"
+                    tools:text="minim aelit essefghfghfghfghfhfhgffhgfhgfgfhgfhfhgfhgfh ghfhgfgfgfhgfh" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_color" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/circle_shape_bg"
-                    android:text="@{viewModel.aisle}"
-                    android:textAllCaps="true"
-                    tools:text="gh"
-                    android:padding="@dimen/dp_3"
-                    android:layout_marginStart="@dimen/dp_8"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
-              </LinearLayout>
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/deal_list_item_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="@{viewModel.salePriceDisplayString}"
+                        android:textSize="18sp"
+                        tools:text="$40" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight=".8"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ship or"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_8"
+                            android:background="@drawable/circle_shape_bg"
+                            android:gravity="center"
+                            android:text="@{viewModel.aisle}"
+                            android:textAllCaps="true"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            tools:text="gh" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-      <View
-          android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:background="@color/gray_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_color" />
     </LinearLayout>
 </layout>

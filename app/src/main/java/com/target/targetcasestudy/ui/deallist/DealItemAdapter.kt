@@ -1,13 +1,9 @@
 package com.target.targetcasestudy.ui.deallist
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.target.targetcasestudy.R
-import com.target.targetcasestudy.data.StaticData
-import com.target.targetcasestudy.databinding.DealListItemBinding
+import com.target.targetcasestudy.databinding.DealItemBinding
 
 class DealItemAdapter : RecyclerView.Adapter<DealItemAdapter.ViewHolder>() {
   private val dealListViewModels = ArrayList<DealListItemModel>()
@@ -32,12 +28,11 @@ class DealItemAdapter : RecyclerView.Adapter<DealItemAdapter.ViewHolder>() {
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     val repoListViewModel = dealListViewModels[position]
     holder.bind(repoListViewModel)
-
   }
 
 
   class ViewHolder(
-    private val binding: DealListItemBinding
+    private val binding: DealItemBinding
   )// Set in constructor since these do not change
     : RecyclerView.ViewHolder(binding.root) {
 
@@ -53,7 +48,7 @@ class DealItemAdapter : RecyclerView.Adapter<DealItemAdapter.ViewHolder>() {
         parent: ViewGroup
       ): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = DealListItemBinding.inflate(inflater, parent, false)
+        val binding = DealItemBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
       }
     }
