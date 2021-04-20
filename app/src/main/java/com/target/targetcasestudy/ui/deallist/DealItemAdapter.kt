@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.target.targetcasestudy.databinding.DealItemBinding
 
-class DealItemAdapter : RecyclerView.Adapter<DealItemAdapter.ViewHolder>() {
+class DealItemAdapter (val eventHandler: DealListFragment): RecyclerView.Adapter<DealItemAdapter.ViewHolder>() {
   private val dealListViewModels = ArrayList<DealListItemModel>()
 
   fun updateDealListViewModels(dealListViewModels: List<DealListItemModel>) {
@@ -27,7 +27,7 @@ class DealItemAdapter : RecyclerView.Adapter<DealItemAdapter.ViewHolder>() {
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     val repoListViewModel = dealListViewModels[position]
-    holder.bind(repoListViewModel)
+    holder.bind(repoListViewModel,eventHandler)
   }
 
 
@@ -36,8 +36,9 @@ class DealItemAdapter : RecyclerView.Adapter<DealItemAdapter.ViewHolder>() {
   )// Set in constructor since these do not change
     : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(dealListItemModel: DealListItemModel) {
+    fun bind(dealListItemModel: DealListItemModel, eventHandler: DealListFragment) {
       binding.viewModel = dealListItemModel
+      binding.eventHandler= eventHandler
       binding.rootLayout.setOnClickListener {
       }
     }
