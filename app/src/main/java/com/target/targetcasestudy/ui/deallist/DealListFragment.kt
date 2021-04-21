@@ -13,9 +13,12 @@ import com.target.targetcasestudy.databinding.DealListActivityBinding
 import com.target.targetcasestudy.network.repository.Repository
 import com.target.targetcasestudy.network.schedulers.SchedulerProvider
 import com.target.targetcasestudy.ui.dealsdetail.DealDetailFragment
+import javax.inject.Inject
 
 
 class DealListFragment : Fragment() {
+    //dagger injection
+    @Inject
     lateinit var presenter: DealListPresenter
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,6 +26,9 @@ class DealListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val viewModel = createDealListViewModel()
+        DaggerDealListComponent.builder()
+            .dealListModule(DealListModule(viewModel))
+            .build().inject(this)
         val binding = initializeBinding(container, viewModel)
         setupPresenter(viewModel)
         setupRecyclerView(binding)
