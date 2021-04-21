@@ -39,7 +39,7 @@ class DealListFragment : Fragment() {
         viewModel: DealListViewModel
     ): DealListActivityBinding {
         val inflater = LayoutInflater.from(context)
-        var binding: DealListActivityBinding =
+        val binding: DealListActivityBinding =
             DealListActivityBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel

@@ -7,5 +7,62 @@
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
   </style>
+  <style name="RedColorTextLargeBold">
+    <item name="android:textSize">@dimen/sp_18</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:fontFamily">sans-serif</item>
+    <item name="android:textColor">@color/red_color</item>
+  </style>
+  <style name="RedColorTextSmallBold">
+    <item name="android:textSize">@dimen/sp_12</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:fontFamily">sans-serif</item>
+    <item name="android:textColor">@color/red_color</item>
+  </style>
+  <style name="BlackColorTextMedium">
+    <item name="android:textSize">@dimen/sp_16</item>
+    <item name="android:fontFamily">sans-serif-medium</item>
+    <item name="android:textColor">@color/color_txt</item>
+  </style>
+  <style name="BlackColorTextLargeBold">
+    <item name="android:textSize">@dimen/sp_16</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:fontFamily">sans-serif</item>
+    <item name="android:textColor">@color/color_txt</item>
+  </style>
+  <style name="WhiteTextMedium">
+    <item name="android:textSize">@dimen/sp_16</item>
+    <item name="android:fontFamily">sans-serif-medium</item>
+    <item name="android:textColor">@color/color_white</item>
+  </style>
+  <style name="GreyDarkColorTextLargeBold" parent="GreyDarkColorTextLarge">
+    <item name="android:textStyle">bold</item>
+  </style>
+  <style name="GreyDarkColorTextLarge">
+    <item name="android:textSize">@dimen/sp_18</item>
+    <item name="android:fontFamily">sans-serif</item>
+    <item name="android:textColor">@color/color_grey_dark</item>
+  </style>
+  <style name="GreyColorTextMedium">
+    <item name="android:textSize">@dimen/sp_15</item>
+    <item name="android:fontFamily">sans-serif</item>
+    <item name="android:textColor">@color/color_grey</item>
+  </style>
+  <style name="GreenButtonText">
+    <item name="android:textSize">@dimen/sp_15</item>
+    <item name="android:fontFamily">sans-serif-medium</item>
+    <item name="android:textColor">@color/color_green</item>
+  </style>
+  <style name="BlackButtonStylePrimary" parent="BlackColorTextMedium">
+    <item name="android:background">@android:color/darker_gray</item>
+  </style>
+  <style name="WhiteButtonStylePrimary" parent="WhiteTextMedium">
+    <item name="android:background">@color/colorPrimary</item>
+  </style>
+  <style name="RetryButtonStyle" parent="GreenButtonText">
+    <item name="android:layout_margin">@dimen/dp_16</item>
+    <item name="android:background">@drawable/retry_button_round_bg</item>
+  </style>
 
+  <dimen name="sp_12">12sp</dimen>
 </resources>
