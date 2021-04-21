@@ -7,7 +7,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.target.targetcasestudy.R
+import com.target.targetcasestudy.data.validateCreditCard
+import com.target.targetcasestudy.databinding.DealListActivityBinding
+import com.target.targetcasestudy.databinding.DialogPaymentBinding
+import com.target.targetcasestudy.ui.deallist.DealListViewModel
 
 /**
  * Dialog that displays a minimal credit card entry form.
@@ -23,26 +29,36 @@ import com.target.targetcasestudy.R
  */
 class PaymentDialogFragment : DialogFragment() {
 
-  private lateinit var submitButton: Button
-  private lateinit var creditCardInput: EditText
-
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    val root = inflater.inflate(R.layout.dialog_payment, container, false)
+    val viewModel = createPaymentViewModel()
+    val binding = initializeBinding(container, viewModel)
 
-    submitButton = root.findViewById(R.id.submit)
-    creditCardInput = root.findViewById(R.id.card_number)
-    val cancelButton: Button = root.findViewById(R.id.cancel)
-
-    cancelButton.setOnClickListener { dismiss() }
-    submitButton.setOnClickListener { dismiss() }
-
-    // TODO enable the submit button based on card number validity using Validators.validateCreditCard()
-
-    return root
+    binding.cancel.setOnClickListener { dismiss() }
+    binding.submit.setOnClickListener { dismiss() }
+    viewModel.creditCardText.observe(this, Observer {
+        viewModel.buttonState.value=validateCreditCard(it)
+    })
+    return binding.root
+  }
+  private fun createPaymentViewModel(): PaymentDialogViewModel {
+    val viewModel= ViewModelProviders.of(this).get(PaymentDialogViewModel::class.java)
+     viewModel.buttonState.value=false
+    return viewModel
   }
 
+  private fun initializeBinding(
+    container: ViewGroup?,
+    viewModel: PaymentDialogViewModel
+  ): DialogPaymentBinding {
+    val inflater = LayoutInflater.from(context)
+    val binding: DialogPaymentBinding =
+      DialogPaymentBinding.inflate(inflater, container, false)
+    binding.lifecycleOwner = this
+    binding.viewModel = viewModel
+    return binding
+  }
 }
