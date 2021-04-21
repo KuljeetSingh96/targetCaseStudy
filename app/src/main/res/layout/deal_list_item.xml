@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data class="DealItemBinding">
+
         <variable
             name="eventHandler"
             type="com.target.targetcasestudy.ui.deallist.DealListFragment" />
@@ -16,9 +17,9 @@
 
     <LinearLayout
         android:id="@+id/root_layout"
-        android:onClick="@{(view) -> eventHandler.onDealsClicked(viewModel)}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{(view) -> eventHandler.onDealsClicked(viewModel)}"
         android:orientation="vertical">
 
         <LinearLayout
@@ -30,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_margin="16dp"
+                android:layout_margin="@dimen/dp_16"
                 android:orientation="vertical">
 
                 <ImageView
@@ -45,44 +46,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginBottom="@dimen/dp_16"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/deal_list_item_title"
+                    style="@style/GreyDarkColorTextLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/dp_16"
                     android:layout_marginBottom="@dimen/dp_8"
                     android:ellipsize="end"
                     android:lines="2"
                     android:text="@{viewModel.title}"
-                    android:textSize="18sp"
                     tools:text="minim aelit essefghfghfghfghfhfhgffhgfhgfgfhgfhfhgfhgfh ghfhgfgfgfhgfh" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/dp_1"
                     android:background="@color/gray_color" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/dp_16"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/deal_list_item_price"
+                        style="@style/GreyDarkColorTextLarge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
                         android:text="@{viewModel.salePriceDisplayString}"
-                        android:textSize="18sp"
                         tools:text="$40" />
 
                     <LinearLayout
@@ -94,12 +95,13 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            style="@style/GreyDarkColorTextLarge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ship or"
-                            android:textSize="18sp" />
+                            android:text="@string/ship_or" />
 
                         <TextView
+                            style="@style/RedColorTextSmallBold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/dp_8"
@@ -107,9 +109,6 @@
                             android:gravity="center"
                             android:text="@{viewModel.aisle}"
                             android:textAllCaps="true"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
                             tools:text="gh" />
                     </LinearLayout>
                 </LinearLayout>
@@ -118,7 +117,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/dp_1"
             android:background="@color/gray_color" />
     </LinearLayout>
 </layout>

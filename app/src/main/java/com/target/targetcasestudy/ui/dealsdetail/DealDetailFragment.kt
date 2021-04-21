@@ -43,7 +43,7 @@ class DealDetailFragment : Fragment() {
   private fun initializeBinding(container: ViewGroup?, viewModel: DealDetailViewModel): DealDetailItemBinding
   {
     val inflater = LayoutInflater.from(context)
-    var binding: DealDetailItemBinding =
+    val binding: DealDetailItemBinding =
       DealDetailItemBinding.inflate(inflater, container, false)
     binding.lifecycleOwner = this
     binding.viewModel = viewModel

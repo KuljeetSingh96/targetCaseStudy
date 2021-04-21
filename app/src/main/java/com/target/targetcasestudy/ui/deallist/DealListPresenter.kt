@@ -30,7 +30,7 @@ class DealListPresenter(
             ArrayList<DealListItemModel>()
 
         for (products in dealListResponse.products) {
-            var dealItemModel = DealListItemModel()
+            val dealItemModel = DealListItemModel()
             dealItemModel.id = products.id
             dealItemModel.title = products.title
             dealItemModel.description = products.description
